@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class Test {
+	public static void main(String args[]) {
+		String inputString[]={"eat", "tea", "tan", "ate", "nat", "bat"};		
+		System.out.println(groupAnagrams(inputString));
+	}
+    public static List<List<String>> groupAnagrams(String[] stringArray) {
+        if (stringArray.length == 0) return new ArrayList<List<String>>();
+        Map<String, List<String>> answer = new HashMap<String, List<String>>();
+        for (String s : stringArray) {
+            char[] charArray = s.toCharArray();
+            Arrays.sort(charArray);
+            String key = String.valueOf(charArray);
+            if (!answer.containsKey(key)) answer.put(key, new ArrayList<String>());
+            answer.get(key).add(s);
+        }
+        return new ArrayList<List<String>>(answer.values());
+    }
+}
